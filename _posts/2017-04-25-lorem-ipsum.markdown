@@ -30,6 +30,7 @@ This is the sample page where basics of markdown sintax is demonstrated. It is a
 #### Page linking
 
 It is possible to enable 'jumping' to content just buy referencing to the heading name.
+
 Example:
 
 ```
