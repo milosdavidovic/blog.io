@@ -5,7 +5,7 @@ date:   2017-04-25 11:25:25 +0200
 categories: jekyll intro
 ---
 
-This is the sample page where basics of markdown sintax is demonstrated. It is a bunch of nonsense text just to show some markdown language capabilities. It is quite easy to write markdown once you get used to it.
+This is the sample page where basics of markdown syntax is demonstrated. It is a bunch of nonsense text just to show some markdown language capabilities. It is quite easy to write markdown once you get used to it.
 
 ### Content
 
