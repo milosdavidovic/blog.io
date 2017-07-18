@@ -46,9 +46,11 @@ Result:
 There are four level of headers available in markdown. This is achieved by suraunding text with *hash* characters (*space* is needed between hash characters and the text). This is an example of markdown code for headings:
 
 ```
-# First level header #
+First level header
+==================
 
-## Second level header ##
+Second level header
+-------------------
 
 ### Third level header ###
 
