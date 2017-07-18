@@ -59,9 +59,11 @@ Second level header
 
 And that will produce:
 
-<h1> First level header </h1>
+First level header
+==================
 
-## Second level header ##
+Second level header
+-------------------
 
 ### Third level header ###
 
