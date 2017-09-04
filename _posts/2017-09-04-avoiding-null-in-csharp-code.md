@@ -72,7 +72,7 @@ class Conditional<T>
 }
 ```
 
-//	This approach was similar effect like TrySomething method and branching around Boolean value (Success) is still there.
+This approach was similar effect like TrySomething method and branching around Boolean value (Success) is still there.
 
 ## Option (Maybe) objects
 
