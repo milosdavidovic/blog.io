@@ -13,15 +13,12 @@ that method was not executed successfully, or some item was not found.
 This could lead to lot of bugs, unpredictable behaviour and less readable code.
 Here are some ways me could use to reduce number of null references in our code.
 
-## 
-TrySomething methods
+## TrySomething methods
 
-This is a common way of providing information on whether method executed successfully 
-	and avoiding return on null object if method fails. Chances are you encountered these when using
-	C# primitive types and their TryParse methods, which operate on the same way.
+This is a common way of providing information on whether method executed successfully and avoiding return on null object if method fails. Chances are you encountered these when using C# primitive types and their TryParse methods, which operate on the same way.
     
 ```csharp
-    public bool TrySendRequest(out string response)
+public bool TrySendRequest(out string response)
 {
 	var client = new SomeClient();
 	try
@@ -31,7 +28,7 @@ This is a common way of providing information on whether method executed success
 	}
 	catch(Exception ex)
 	{
-		//log error
+		`/`/log error
 		return false;
 	}
 }
