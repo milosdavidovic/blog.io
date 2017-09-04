@@ -364,6 +364,6 @@ public static void Main (string[] args)
 }
 ```
 
-	Null Object pattern makes code cleaner and more readable. Null object classes are often implemented as singletons, so only one instance is used troughout entire application.If Article constructor receives null as discount, Exeption will be raised at object creation level as it should,so we have no nasty surprizes in the later stages of code execution.
+Null Object pattern makes code cleaner and more readable. Null object classes are often implemented as singletons, so only one instance is used troughout entire application.If Article constructor receives null as discount, Exeption will be raised at object creation level as it should,so we have no nasty surprizes in the later stages of code execution.
 
 
