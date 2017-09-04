@@ -1,7 +1,5 @@
 ---
 published: true
----
----
 layout: post
 title:  "Avoiding Null In CSharp"
 date:   2017-09-04 11:25:25 +0200
