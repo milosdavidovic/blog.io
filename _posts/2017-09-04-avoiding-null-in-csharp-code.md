@@ -28,7 +28,7 @@ public bool TrySendRequest(out string response)
 	}
 	catch(Exception ex)
 	{
-		`/`/log error
+		//log error
 		return false;
 	}
 }
