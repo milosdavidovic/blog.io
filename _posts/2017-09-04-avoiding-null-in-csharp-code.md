@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ---
 layout: post
@@ -34,6 +34,4 @@ public bool TrySendRequest(out string response)
 }
 ```
     
-    	This is sort of "easy way out" and code is more predictable and readable. 
-	Downside is that this doesn't help as much 
-	and client code will still need to check returned boolean value. 
+This is sort of "easy way out" and code is more predictable and readable. Downside is that this doesn't help as much and client code will still need to check returned boolean value. 
