@@ -5,12 +5,6 @@ date: '2017-09-04 11:25:25 +0200'
 categories: csharp
 published: true
 ---
----
-layout: post
-title:  "Avoiding Null In CSharp"
-date:   2017-09-04 11:25:25 +0200
-categories: csharp
----
 
 Some Ideas on how to eliminate null references in code
 
