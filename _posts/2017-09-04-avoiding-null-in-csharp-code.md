@@ -293,14 +293,14 @@ Here is the example of the client code:
 public static void Main (string[] args)
 {
 	var shoes = new Article("black shoes", 
-    	100.00, 
-        new HappyHourDiscount());
+   		100.00, 
+   		new HappyHourDiscount());
 	var hat = new Article("red hat", 
-    	30.00, 
-        new NewCustomerDiscount());
+   		30.00, 
+   		new NewCustomerDiscount());
 	var jacket = new Article("blue jacket", 
-    	80.00, 
-        null); // We don't want to give discount on jackets
+   		80.00, 
+   		null); // We don't want to give discount on jackets
 }
 ```
 Passing null instead of discount object will cause ArgumentNull exception when calling Apply, so now the code will branch on the null check to avoid this. One solution to this problem is to introduce the null object => Class that will implement the same interface like real objects, but it will behave like null eg. it will do nothing. In our example it will just return regular price with no discount, same behaviour like we had with null, but the code looks a lot cleaner.
@@ -342,14 +342,14 @@ public class Article
 public static void Main (string[] args)
 {
 	var shoes = new Article("black shoes", 
-    	100.00, 
+   		100.00, 
    		new HappyHourDiscount());
 	var hat = new Article("red hat", 	
-    	30.00, 
-    	new NewCustomerDiscount());
+   		30.00, 
+   		new NewCustomerDiscount());
 	var jacket = new Article("blue jacket", 
-    	80.00, 
-    	new NoDiscount()); // Now we pass null object insted of just null
+   		80.00, 
+   		new NoDiscount()); // Now we pass null object insted of just null
 }
 ```
 
