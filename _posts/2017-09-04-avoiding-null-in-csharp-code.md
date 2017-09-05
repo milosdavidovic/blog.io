@@ -6,10 +6,8 @@ categories: csharp
 published: true
 ---
 
-Some Ideas on how to eliminate null references in code
-
-In object oriented software we often struggle with null references, and miss-use them to pass some information to the client, like that method was not executed successfully, or some item was not found.
-This could lead to lots of bugs, unpredictable behaviour and less readable code.
+This post will give some ideas on how to eliminate null references in code, as thay are identifed as common source of bugs and pure code design. In object oriented software we often struggle with null references, and miss-use them to pass some information to the client, like that method was not executed successfully, or some item was not found.
+This could lead to lots of bugs, unpredictable behaviour of the application and less readable code.
 Here are some ways we could use to reduce the number of null references in our code.
 
 ## TryXXX methods
@@ -36,12 +34,12 @@ public bool TrySendRequest(out string response)
 ```
 
 This is sort of "easy way out" and the code is more predictable and readable. 
-The downside is that this doesn't help as much and client code will still need to check returned boolean value. 
+The downside is that this doesn't help us much and client code will still need to check returned boolean value when calling this TrySendRequest method.
 
 
 ## Contitional result object 
 
-This class is a kind a wrapper around the actual object of interest, and it additionally provides Boolean property (Success) which indicates the presence of the Result object.
+This Conditional<T> class is a kind a wrapper around the actual object of interest, and it additionally provides Boolean property (Success) which indicates the presence (and validity) of the Result object.
 
 	
 ```csharp
@@ -68,12 +66,12 @@ This approach was similar effect like TrySomething method and branching around B
 
 ## Option (Maybe) objects
 
-Transform object to a collection of objects of the same type implementing IEnumerable<T> interface and use the power of Linq to Objects to perform logic execution. There are two constructors at our disposal. First accepts no parameters and it just creates an empty collection of objects. The other one is used in case we indeed have an object and it creates a collection with only one item. This Option class is now used to represent our object in the form of a collection and it will never be null. If the collection is empty, no action will be executed and without exception.
-
 **_The problem:_**
 
-We are invoking a method and expect some value to be returned. The problem here is that we are not sure if returned value will be null. It is certainly possible. So we have to protect our code with gourd statements, or NullReferenceException will arise. This leads to a lot of if statements, but more importantly, every now and then someone will forget to check whether an object is null and the application could crash.
-Here is one simple example of that situation:
+We are invoking a method and expect some value to be returned. The problem here is that we are not sure if returned value will be null. It is certainly possible. So we have to protect our code with guard statements, or NullReferenceException will arise. This leads to a lot of if statements, but more importantly, every now and then someone will forget to check whether an object is null and the application could crash.  
+
+he idea behind Option (Maybe) objects is to transform our object to a collection of objects of the same type implementing IEnumerable<T> interface and use the power of Linq to Objects to perform logic execution. Inside Option class, there are two constructors at our disposal. First accepts no parameters and it just creates an empty collection of objects. The other one is used in case we indeed have an object and it creates a collection with only one item. This Option class is now used to represent our object in the form of a collection and it will never be null. If the collection is empty, no action will be executed and without exception.
+Here is one simple example of the problematic situation:
 
 
 ```csharp
@@ -118,7 +116,7 @@ public class Gold
 }
 ```
 
-SurrenderGold method returns Gold object and we are not sure is it will contain some value or it will be null. So we need to check that in client code, in order to avoid raising an exception.
+SurrenderGold method returns Gold object and we are not sure whether it will contain some value or it will be null. So we need to check that in client code, in order to avoid raising an exception.
 This is where Option (or Maybe) object come into place. We could change code so SurrenderGold method returns Option<T> (T is Gold in this case), and here is the new implementation:
 
 
@@ -153,8 +151,8 @@ public class Option<T> : IEnumerable<T>
 }
 ```
 
-Basically, the idea is to wrap a reference object into type extending IEnumerable<T> interface, and hence the object becomes a collection with zero or one object.
-Now we have the power of Linq To Objects at our disposal and client code can be written as follows:
+Basically, the idea is to wrap a reference object into type extending IEnumerable<T> interface, and hence the object becomes a collection with zero or one object. We can now iterate through this collection and execute same operation like we would on a single object.
+The client code can be written as follows:
 
 
 ```csharp
@@ -206,7 +204,7 @@ public static class EnumerableExtensions
 }
 ```
 
-So the final form of the client code should be little more readable and simpler:
+So the final form of the client code should be little more readable and simpler, because we now have the power of Linq To Objects syntax at our disposal: 
 
 ```csharp
 static void Main(string[] args)
@@ -284,9 +282,7 @@ public class HappyHourDiscount : IDiscount
 }
 ```
 
-In this current implementation, we expect IDiscount object to be passed to the Article class through constructor
-and problem arises when we don't want to give discounts on the specific Article. Only option we have now is
-to pass null and that will signal that no discount should be applied. We use null to pass information. This is bad as our intentions are not clear and one who wrote this code only knows this little secret. This effect maintainability and readability of the code.
+In this current implementation, we expect IDiscount object to be passed to the Article class through constructor and problem arises when we don't want to give discounts on the specific Article. Only option we have now is to pass null and that will signal that no discount should be applied. We use null to pass information. This is bad practise as our intentions are not clear and chances are that only person who wrote this code knows this secret. This effect maintainability and readability of the code.
 Here is the example of the client code:
 
 
@@ -304,7 +300,7 @@ public static void Main (string[] args)
    		null); // We don't want to give discount on jackets
 }
 ```
-Passing null instead of discount object will cause ArgumentNull exception when calling Apply, so now the code will branch on the null check to avoid this. One solution to this problem is to introduce the null object => Class that will implement the same interface like real objects, but it will behave like null eg. it will do nothing. In our example it will just return regular price with no discount, same behaviour like we had with null, but the code looks a lot cleaner.
+Passing null instead of discount object will cause ArgumentNull exception when calling Apply, so now the code will branch on the null check to avoid this. One solution to this problem is to introduce the null object => Class that will implement the same interface like real objects, but it will behave like null eg. it will do nothing. In our example it will just return regular price with no discount, same behaviour like we had before, but the code looks a lot cleaner.
 
 ```csharp
 public class NoDiscount : IDiscount
