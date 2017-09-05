@@ -85,7 +85,8 @@ static void Main(string[] args)
 
 	if(stolenGold != null)
 	{
-		Console.WriteLine("{0} gold coins stolen from leprechaun.", gold.Amount);
+		Console.WriteLine("{0} gold coins stolen from leprechaun.", 
+                          gold.Amount);
 	}
 }
 
