@@ -343,13 +343,13 @@ public static void Main (string[] args)
 {
 	var shoes = new Article("black shoes", 
     	100.00, 
-    	new HappyHourDiscount());
+   		new HappyHourDiscount());
 	var hat = new Article("red hat", 	
     	30.00, 
-        new NewCustomerDiscount());
+    	new NewCustomerDiscount());
 	var jacket = new Article("blue jacket", 
     	80.00, 
-        new NoDiscount()); // Now we pass null object insted of just null
+    	new NoDiscount()); // Now we pass null object insted of just null
 }
 ```
 
