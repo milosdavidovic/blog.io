@@ -18,7 +18,7 @@ Here are some ways we could use to reduce the number of null references in our c
 This is a common way of providing information on whether the method executed successfully and avoid returning of the null object if method fails. Chances are you encountered these when using C# primitive types and their TryParse methods, which operate in the same way.
 
 	
-```
+```csharp
 public bool TrySendRequest(out string response)
 {
 	var client = new SomeClient();
@@ -44,7 +44,7 @@ The downside is that this doesn't help as much and client code will still need t
 This class is a kind a wrapper around the actual object of interest, and it additionally provides Boolean property (Success) which indicates the presence of the Result object.
 
 	
-```
+```csharp
 class Conditional<T>
 {
 	public T Result { get; private set; }
@@ -76,7 +76,7 @@ We are invoking a method and expect some value to be returned. The problem here 
 Here is one simple example of that situation:
 
 
-```
+```csharp
 static void Main(string[] args)
 {
 	Leprechaun lucky = new Leprechaun(new Gold(10));
@@ -121,7 +121,7 @@ SurrenderGold method returns Gold object and we are not sure is it will contain 
 This is where Option (or Maybe) object come into place. We could change code so SurrenderGold method returns Option<T> (T is Gold in this case), and here is the new implementation:
 
 
-```
+```csharp
 public class Option<T> : IEnumerable<T>
 {
 	private readonly IEnumerable<T> values;
@@ -156,7 +156,7 @@ Basically, the idea is to wrap a reference object into type extending IEnumerabl
 Now we have the power of Linq To Objects at our disposal and client code can be written as follows:
 
 
-```
+```csharp
 static void Main(string[] args)
 {
 	Leprechaun lucky = new Leprechaun(new Gold(10));
@@ -194,7 +194,7 @@ Now we don't care if there is gold or not, because if collection is empty, nothi
 We could also hide foreach loop be creating extension for Enumerable<T> class as follows:
 
 
-```
+```csharp
 public static class EnumerableExtensions
 {
 	public static void Do<T>(this Enumerable<T> sequence, Action<T> action)
@@ -207,7 +207,7 @@ public static class EnumerableExtensions
 
 So the final form of the client code should be little more readable and simpler:
 
-```
+```csharp
 static void Main(string[] args)
 {
 	Leprechaun lucky = new Leprechaun(new Gold(10));
@@ -230,7 +230,7 @@ Creating "null" class object eg. objects which are neutral respecting business l
 Example of a problematic situation:
 
 	
-```
+```csharp
 public class Article
 {
 	public string Name {get; private set;}
@@ -289,7 +289,7 @@ to pass null and that will signal that no discount should be applied. We use nul
 Here is the example of the client code:
 
 
-```
+```csharp
 public static void Main (string[] args)
 {
 	var shoes = new Article("black shoes", 
@@ -305,7 +305,7 @@ public static void Main (string[] args)
 ```
 Passing null instead of discount object will cause ArgumentNull exception when calling Apply, so now the code will branch on the null check to avoid this. One solution to this problem is to introduce the null object => Class that will implement the same interface like real objects, but it will behave like null eg. it will do nothing. In our example it will just return regular price with no discount, same behaviour like we had with null, but the code looks a lot cleaner.
 
-```
+```csharp
 public class NoDiscount : IDiscount
 {
 	public decimal Apply(decimal price)
