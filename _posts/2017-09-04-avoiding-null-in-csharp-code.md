@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Avoiding Null In CSharp
+title: Avoiding Null References In CSharp
 date: '2017-09-04 11:25:25 +0200'
 categories: csharp
 published: true
