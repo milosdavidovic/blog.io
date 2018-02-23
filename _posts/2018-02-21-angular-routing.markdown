@@ -27,7 +27,7 @@ For navigating inside our Angular applications we usually don't want to force a 
 
 ### Adding Router Paths
 
-Create a object of type Routes which will hold an array all routes supported by the application. The Routes class should be imported from @angular/router. With that we can configure our app to use these routes by configuring RouterModule using forRoute method inside the app.module.ts.
+Create a object of type Routes which will hold an array all routes supported by the application. The Routes class should be imported from @angular/router. With that we can configure our app to use these routes by configuring RouterModule using forRoute method inside the app.module.ts file.
 
 #### Routes declaration
 
