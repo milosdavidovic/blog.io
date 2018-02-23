@@ -81,7 +81,7 @@ In this setup we still have two main paths 'home' and 'users' but we are using r
 
 #### Passing Parameters to Routes
 
-```typescript
+```ts
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
@@ -113,8 +113,9 @@ If there is a chance that parameter will change while we have the same component
  ```ts
 // ActivatedRoute need to be imported from @angular/router
 // import { ActivatedRoute } from '@angular/router';
+private id: any;
 
- this.activatedRoute.params
+this.activatedRoute.params
     .subscribe(
         (params: Params) => {
             this.id = params['id'];
@@ -168,7 +169,7 @@ We use queryParams property to add query parameters, same way we did when using 
 #### Wild Card Routes
 Sometimes we don't want to be so specific about the route we are defining, to be able to cover some range of routes. Example for this might be the _404 Page Not Found_ page, when user hits the route we did not explicitly defined in our application.
 
-```typescript
+```ts
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
@@ -201,8 +202,9 @@ If there is a chance that query parameter will change while we have the same com
  ```ts
 // ActivatedRoute need to be imported from @angular/router
 // import { ActivatedRoute } from '@angular/router';
+private foo: any;
 
- this.activatedRoute.queryParams
+this.activatedRoute.queryParams
     .subscribe(
         (queryParams: Params) => {
             this.foo = queryParams['foo'];
