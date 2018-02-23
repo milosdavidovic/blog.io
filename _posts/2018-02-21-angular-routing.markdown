@@ -27,7 +27,7 @@ For navigating inside our Angular applications we usually don't want to force a 
 
 ### Adding Router Paths
 
-Create a object of type Routes which will hold an array all routes supported by the application. The Routes class should be imported from @angular/router.
+Create a object of type Routes which will hold an array all routes supported by the application. The Routes class should be imported from @angular/router. With that we can configure our app to use these routes by configuring RouterModule using forRoute method inside the app.module.ts.
 
 #### Routes declaration
 
@@ -39,9 +39,22 @@ const appRoutes: Routes = [
 ```
 
 Here we are defining a two root paths: ' ' (empty or default path) and 'users' path and the code is pretty straightforward.
-If we have our application served locally on the port 4200 for example, visiting the address http://localhost:4200 would load our HomeComponent, while visiting http://localhost:4200/users would load the UsersComponent. We could say that our HomeComponent is serving like a default one in this setup.
+If we have our application served locally on the port 4200 for example, visiting the address `http://localhost:4200` would load our HomeComponent, while visiting `http://localhost:4200/users` would load the UsersComponent. We could say that our HomeComponent is serving like a default one in this setup.
 
 _NOTE: We need to place `<router-outlet></router-outlet>` tag in out app.componenet.html to serve as a placeholder for loading a components based on the route._
+
+#### Configuring RouterModule
+
+```ts
+@NgModule({
+    imports: [
+        RouterModule.forRoot(appRoutes)
+    ],
+    providers: [],
+    bootstrap: [],
+    exports: [RouterModule]
+})
+```
 
 #### Child Routes
 
