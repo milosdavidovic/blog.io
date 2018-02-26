@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lorem Ipsum"
+title:  "Jekyll Markdown Style Lorem Ipsum"
 date:   2017-04-25 11:25:25 +0200
 categories: jekyll intro
 ---
