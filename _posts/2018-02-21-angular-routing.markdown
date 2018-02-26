@@ -197,7 +197,7 @@ const appRoutes: Routes = [
 
 Here we use double asterisk (`**`) wildcard character to "catch" all routes we are not supporting and re
 
->_NOTE: Defined routes are parsed from top to bottom, so it is a good idea to place generic routes like this one at the end. If we have had defined this '**' path first, we would be always redirected to the not-found root, no matter which route we visit._ 
+_NOTE: Defined routes are parsed from top to bottom, so it is a good idea to place generic routes like this one at the end. If we have had defined this '**' path first, we would be always redirected to the not-found root, no matter which route we visit._
 
 #### Retrieving Query Parameters
 
