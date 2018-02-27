@@ -90,7 +90,7 @@ const appRoutes: Routes = [
 
 In this setup, we still have two main paths 'home' and 'users' but we are using the redirectTo property to set redirect user to another path instead loading a specific component.  
 
-> _NOTE: We are using the pathMatch parameter to set matching strategy for this path. By default, Angular matches paths by prefix. For our example, this means that all paths starting with /home would be redirected to the 'home' path. If this is not the desired behavior we could set matching strategy to 'full' and the redirection will happen only in case of exact match._
+_NOTE: We are using the pathMatch parameter to set matching strategy for this path. By default, Angular matches paths by prefix. For our example, this means that all paths starting with /home would be redirected to the 'home' path. If this is not the desired behavior we could set matching strategy to 'full' and the redirection will happen only in case of exact match._
 
 #### Passing Parameters to Routes
 
@@ -142,7 +142,7 @@ When we have out Routes configured, we can use them and navigate inside our appl
 
 #### Navigation With Router Links
 
-```
+```cs
 <ul class="dropdown-menu">
     <li>
         <a [routerLink]="['new']" [queryParams]="{bar: foo}" routerLinkActive="active">Add User </a>
