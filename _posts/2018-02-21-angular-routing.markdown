@@ -142,7 +142,7 @@ When we have out Routes configured, we can use them and navigate inside our appl
 
 #### Navigation With Router Links
 
-```cs
+```HTML+Django
 <ul class="dropdown-menu">
     <li>
         <a [routerLink]="['new']" [queryParams]="{bar: foo}" routerLinkActive="active">Add User </a>
