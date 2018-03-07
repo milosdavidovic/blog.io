@@ -6,7 +6,7 @@ categories: frontend
 published: false
 ---
 
-It is absolutely possible to create form and handle user input in the HTML, why would we need Angular's help to do this? Problem lies in the fact that we usually end up with submitting form's data to the server using the submit button. Due to the fact that we are creating SPA with help of the Angular framework and therefore there no "submitting", we need a different approach. Instead of the submitting, we can use Angular's Http Module to send form's data back and forth between our application and some backend. Additionally, Angular helps us with this task by providing lot of functionality one might need when dealing with forms. Some of this functionality we get out-of-box with Angular are: easy access to form's data, user input validation, conditionally changes how form is displayed and what is visible or enabled and much more. 
+It is absolutely possible to create form and handle user input in the HTML, why would we need Angular's help to do this? Problem lies in the fact that we usually end up with submitting form's data to the server using the submit button. Due to the fact that we are creating SPA with help of the Angular framework and therefore there no "submitting", we need a different approach. Instead of the submitting, we can use Angular's Http Module to send form's data back and forth between our application and some backend server. Additionally, Angular helps us with this task by providing lot of functionality one might need when dealing with forms. Some of this functionality we get out-of-box with Angular are: easy access to form's data, user input validation, conditionally changes how form is displayed and what is visible or enabled and much more. 
 There are two approaches to developing forms in Angular: Template and Reactive. This post will cover some of the basics of the Template approach through an example of creating simple pizza ordering form ('cuz everyone likes pizza!).
 
 ## Content
@@ -16,7 +16,7 @@ There are two approaches to developing forms in Angular: Template and Reactive. 
 This is how our example form looks like:
 //TODO add photo
 
-And here is the HTML:
+Let's create some basic HTML for demonstration purposes:
 
 ```html
 <div>
@@ -29,67 +29,13 @@ And here is the HTML:
         </div>
       </div>
       <div class="row">
-        
-        <div class="col-md-3">
-          <h3>Choose your pizza!</h3>
+        <div class="col-md-6">
+          <h3>Create your pizza!</h3>
           <hr />
           <div class="form-group">
-            <label for="pizza">Choose type</label>
-            <select id="pizza" class="form-control" name="pizza" [ngModel]="'neapolitan'">
-              <option value="neapolitan">Neapolitan Pizza</option>
-              <option value="margherita">Margherita Pizza</option>
-              <option value="greek">Greek Pizza</option>
-            </select>
+            <label for="name">Pizza Name</label>
+            <input type="text" class="form-control" id="name" name="name" ngModel>
           </div>
-          <div class="form-group">
-            <label for="radio-wrapper" style="margin-bottom:-5px">Katchup Type</label>
-            <div id="radio-wrapper" style="margin-top:-5px">
-              <div class="radio" *ngFor="let katchupType of katchupTypes">
-                <label for="katchupType">
-                  <input type="radio" id="katchupType" [value]="katchupType" name="katchup" [ngModel]="katchupTypes[0]"> {{ katchupType }}
-                </label>
-              </div>
-            </div>
-          </div>
-          <div ngModelGroup="extras">
-            <div class="form-group">
-              <label for="checkbox-wrapper" style="margin-bottom:-5px">Extras</label>
-              <div id="checkbox-wrapper" style="margin-top:-5px">
-                <div class="checkbox" *ngFor="let ex of extras">
-                  <label>
-                    <input type="checkbox" [value]="ex" [name]="ex" [ngModel]="extrasInitialValue">{{ ex }}</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="note">Additional note</label>
-            <textarea class="form-control" id="note" name="note" ngModel></textarea>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <h3>Delivery Details</h3>
-          <hr />
-          <div ngModelGroup="address-group" #addressGroup="ngModelGroup">
-            <div class="form-group">
-              <label for="city">Choose city</label>
-              <select class="form-control" name="city" id="city" [ngModel]="'Boston'">
-                <option value="Boston">Boston</option>
-                <option value="New York">New York</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" name="address" ngModel required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="text" class="form-control" id="phone" name="phone" ngModel required>
-            </div>
-          </div>
-          <p *ngIf="!addressGroup.valid && addressGroup.touched" class="text-danger">Please fill in the address details.</p>
-          <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Order Now</button>
         </div>
       </div>
     </div>
@@ -97,7 +43,7 @@ And here is the HTML:
 </div>
 ```
 
-And appropriate typescript:
+And the appropriate typescript to go with it:
 
 ```ts
 import { Component } from '@angular/core';
@@ -109,17 +55,29 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  katchupTypes = ['No Katchup', 'Mild', 'Hot'];
-  extras = ['Extra cheese', 'Olives'];
-  extrasInitialValue = false;
-  initialNote = 'You can write additional notes here...';
-
   onSubmit(form: NgForm) {
-    console.log(form);
+    console.log('Value of a name variable is: ' + form.value.name);
   }
 }
 
 ```
+
+When we submit this form, we can see following output in the console as expected:
+
+//TODO Insert image
+
+But to understand how this works, let examine what Angular exactly did for us here. We have our HTML form element, but it has some additional Angular syntax:  
+`<form (ngSubmit)="onSubmit(f)" #pizzaForm="ngForm">`  
+The `ngSubmit` is a directive which specifies the function to be executed when the form is submitted. In the example we have specified that onSubmit function should be executed and this function is defined in our typescript.  
+What is interesting is that we were able to pass parameter f to this function, which is of type NgForm. NgForm is a another directive, and we can export a directive into a local template variable like: `#pizzaForm="ngForm"`.  
+But this is just one peace of the puzzle.
+
+`<input type="text" class="form-control" id="name" name="name" ngModel>`  
+To finally get access to form values, we need to use another directive - `ngModel`, to tell Angular in what elements of the form are we interested in. also, we need to give name to our element using the name attribute, and this name we will also use when accessing the elements value in our typescript code.  
+Finally we are able to get value from the input element as follows:  
+`console.log('Value of a name variable is: ' + form.value.name);`
+
+
 
 [Accessing Forms Data From Typescript](#accessing-forms-data-from-typescript)
 
@@ -132,6 +90,8 @@ export class AppComponent {
 [Using Radio Buttons](#using-radio-buttons)
 
 [Using Select Element](#using-select-element)
+
+[Using Checkbox Element](#using-checkbox-element)
 
 [Setting And Patching The Data](#setting-and-patching-the-data)
 
@@ -148,5 +108,7 @@ export class AppComponent {
 ### Using Radio Buttons
 
 ### Using Select Element
+
+### Using Checkbox Element
 
 ### Setting And Patching The Data
