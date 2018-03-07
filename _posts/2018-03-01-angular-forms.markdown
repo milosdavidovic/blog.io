@@ -122,7 +122,7 @@ What is interesting is that we were able to pass parameter f to this function, w
 But this is just one peace of the puzzle.
 
 `<input type="text" class="form-control" id="name" name="name" ngModel>`  
-To finally get access to form values, we need to use another directive - `ngModel`, to tell Angular in what elements of the form are we interested in. also, we need to give name to our element using the name attribute, and this name we will also use when accessing the elements value in our typescript code.  
+To finally get access to form values, we need to use another directive: `ngModel`, to tell Angular in what elements of the form are we interested in. also, we need to give name to our element using the name attribute, and this name we will also use when accessing the elements value in our typescript code.  
 Finally we are able to get value from the input element as follows:  
 `console.log('Value of a name variable is: ' + form.value.name);`
 
@@ -149,7 +149,7 @@ Don't forget to include ViewChild form `@angular/core`!
 ### Using Select Element
 
 Lets add select element to our form to be able to choose pizza size:
-![pizza-form-select.png]({{ "/assets/2018-03-01-angular-forms/pizza-form-select.png" | relative_url }})
+![pizza-gui-select.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-select.png" | relative_url }})
 
 Here is the HTML for the above example:
 ```html
@@ -210,7 +210,7 @@ We have manually selected _medium_ option for the pizza size, and successfully a
 ### Using Radio Buttons
 
 Lets add some radio buttons to be able to choose desired ketchup type:
-![pizza-form-radio.png]({{ "/assets/2018-03-01-angular-forms/pizza-form-radio.png" | relative_url }})
+![pizza-gui-radio.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-radio.png" | relative_url }})
 
 And after adding code for this to out HTML, it looks like this:
 ```html
