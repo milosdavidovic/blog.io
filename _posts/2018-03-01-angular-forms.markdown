@@ -64,7 +64,7 @@ export class AppComponent {
 
 When we submit this form, we can see following output in the console as expected:
 
-![My helpful screenshot]({{ "\assets\2018-03-01-angular-forms\pizza-gui-1.png" | absolute_url }})
+![My helpful screenshot]({{ "/assets/2018-03-01-angular-forms/pizza-gui-1.png" | relative_url }})
 
 But to understand how this works, let examine what Angular exactly did for us here. We have our HTML form element, but it has some additional Angular syntax:  
 `<form (ngSubmit)="onSubmit(f)" #pizzaForm="ngForm">`  
