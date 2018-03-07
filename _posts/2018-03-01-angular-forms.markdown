@@ -275,7 +275,7 @@ export class AppComponent {
 ```
 
 After submitting the form, we get the following output in the console:
-![pizza-console-radio.png]({{ "/assets/2018-03-01-angular-forms/pizza-form-console.png" | relative_url }})
+![pizza-console-radio.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-radio.png" | relative_url }})
 
 ### Using Checkbox Element
 
