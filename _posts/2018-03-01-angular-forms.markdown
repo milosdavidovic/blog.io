@@ -279,6 +279,105 @@ After submitting the form, we get the following output in the console:
 
 ### Using Checkbox Element
 
+Check box is another common element we use in the forms, so lets add some to our application. We will use checkboxes to select ingredients for our pizza.
+
+![pizza-gui-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-checkbox.png" | relative_url }})
+
+Lets see the HTML:
+
+```html
+<div>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-md-6 ">
+          <h1>Welcome to our pizza place!</h1>
+          <hr />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Create your own pizza!</h3>
+          <hr />
+          <div class="form-group">
+            <label for="name">Pizza Name</label>
+            <input type="text" class="form-control" id="name" name="name" ngModel>
+          </div>
+          <div class="form-group">
+            <label for="pizza-size">Choose Size</label>
+            <select id="pizza-size" class="form-control" name="pizzaSize" ngModel>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <strong>Katchup Type</strong>
+            <div class="radio" *ngFor="let ketchupType of ketchupTypes">
+              <label for="ketchupType">
+                <input type="radio" id="ketchupType" [value]="ketchupType" name="ketchup" ngModel> {{ ketchupType }}
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <strong>Ingredients</strong>
+            <div class="checkbox" *ngFor="let ingredient of ingredients">
+              <label>
+                <input type="checkbox" (change)="onChange($event)" [name]="ingredient.name">{{ ingredient.name }}</label>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit" >Order Now</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+```
+
+And the typescript:
+
+```ts
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  ketchupTypes = ['No Katchup', 'Mild', 'Hot'];
+  ingredients: { name: string, state: boolean }[] = [
+    { name: 'Cheese', state: false },
+    { name: 'Ham', state: false },
+    { name: 'Egg', state: false },
+    { name: 'Mushrooms', state: false },
+    { name: 'Paprika', state: false },
+    { name: 'Olives', state: false }];
+
+
+  onSubmit(form: NgForm) {
+    console.log(this.ingredients);
+  }
+
+  onChange(value: any) {
+    // Update our ingredients list to keep it in sync with the form's state
+    this.updateIngerdientByName(value.target.name, value.target.checked);
+  }
+
+  updateIngerdientByName(name: string, newState: boolean) {
+    this.ingredients.find(a => a.name === name).state = newState;
+  }
+}
+```
+
+We will go an extra mile for this one, because we want to be able to select multiple ingredients. For this purpose we create a ingredients array it the typescript code, which we will use to track the state of our checkboxes. 
+Checkbox states are updated using onChange function, which is bind to checkboxes `change` event. Other than that, we use the same techniques like we did with the other elements.  
+
+Now, when the form is submitted, we can log `ingredients` array to the console, and see that proper ingredients are selected:
+![pizza-console-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-checkbox.png" | relative_url }})
+
+
 ### Adding Forms Validation
 
 ### Grouping Forms Data
