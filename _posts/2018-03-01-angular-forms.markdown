@@ -126,7 +126,7 @@ To finally get access to form values, we need to use another directive: `ngModel
 Finally we are able to get value from the input element as follows:  
 `console.log('Value of a name variable is: ' + form.value.name);`
 
-HINT: We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
+> HINT: We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
 ```ts
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -377,8 +377,20 @@ Checkbox states are updated using onChange function, which is bind to checkboxes
 Now, when the form is submitted, we can log `ingredients` array to the console, and see that proper ingredients are selected:
 ![pizza-console-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-checkbox.png" | relative_url }})
 
-
 ### Adding Forms Validation
+
+So far we only used _ngForm_ object to access value property, but there is a lot more to it. We can also use this object for the form validation purposes.
+Lets say we want to make our pizza name input field mandatory. Here is some code which demonstrates how to achieve this with help of Angular.
+
+```html
+          <div class="form-group">
+            <label for="name">Pizza Name</label>
+            <input type="text" class="form-control" id="name" name="name" required ngModel>
+          </div>
+```
+All we did here is that we have added `required` html validation attribute.
+
+
 
 ### Grouping Forms Data
 
