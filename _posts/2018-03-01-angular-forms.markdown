@@ -386,7 +386,7 @@ Lets say we want to make our pizza name input field mandatory. Here is some code
 <!--Rest of the code omitted for clarity...-->
 <div class="form-group">
   <label for="name">Pizza Name</label>
-  <input type="text" class="form-control" id="name" name="name" required ngModel>
+  <input type="text" class="form-control" id="name" name="name" ngModel required #nameInput="ngModel">
   <p *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" 
   class="text-danger">Please give Your pizza a name.</p>
 </div>
@@ -394,7 +394,7 @@ Lets say we want to make our pizza name input field mandatory. Here is some code
 <button class="btn btn-primary" type="submit" [disabled]="f.valid">Order Now</button>
 ```
 We have added `required` validation attribute to the name input element.
-In order to demonstrate forms validation, we are disabling our _submit_ button if the form is not valid. In addition to that, it would be nice to tell the user what is wrong with the form's data. We can do this by using already existing `ng-invalid` class.
+In order to demonstrate forms validation, we are also disabling our _submit_ button if the form is not valid. In addition to that, it would be nice to tell the user what is wrong with the form's data. We can do this by using already existing `ng-invalid` class.
 
 ```css
 input.ng-invalid.ng-touched {
@@ -402,10 +402,11 @@ input.ng-invalid.ng-touched {
   border-left: 4px solid lightcoral;
 }
 ```
+In our css code we intentionally applied this _ng-invalid_ style only to the input element, but we can to similar thing for other elements too. 
 
 In order to provide more details to the user about the validation error, we will also display some text, explaining what is wrong with the form, if input is not valid. The `ngIf` directive is the perfect candidate to help us with achieving this, so we have added it to the paragraph.
 Now, when we don't enter name of our pizza, it is not possible to submit the form, and name input field is marked with red border.
-In our css code we intentionally applied this _invalid_ style only to the input element, but we can to similar thing for other elements too. 
+
 
 > Why use `touched` and `dirty`? Usually we don't want to display that form is invalid before user even had a chance of editing the form. The `touched` property tells us exactly that - if the field was touched or not. Another useful property is `dirty`, which tells us if value of the field was changed. Similary, we use `ng-touch` and `ng-dirty` in or css.
 
