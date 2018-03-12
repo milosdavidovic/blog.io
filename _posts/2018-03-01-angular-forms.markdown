@@ -321,9 +321,29 @@ Lets see the HTML:
           </div>
           <div class="form-group">
             <strong>Ingredients</strong>
-            <div class="checkbox" *ngFor="let ingredient of ingredients">
+            <div class="checkbox">
               <label>
-                <input type="checkbox" (change)="onChange($event)" [name]="ingredient.name">{{ ingredient.name }}</label>
+                <input type="checkbox" name="cheese" ngModel>Cheese</label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="ham" ngModel>Ham</label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="egg" ngModel>Egg</label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="mushroom" ngModel>Mushroom</label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="paprika" ngModel>Paprika</label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="olives" ngModel>Olives</label>
             </div>
           </div>
           <button class="btn btn-primary" type="submit" >Order Now</button>
@@ -347,34 +367,15 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   ketchupTypes = ['No Katchup', 'Mild', 'Hot'];
-  ingredients: { name: string, state: boolean }[] = [
-    { name: 'Cheese', state: false },
-    { name: 'Ham', state: false },
-    { name: 'Egg', state: false },
-    { name: 'Mushrooms', state: false },
-    { name: 'Paprika', state: false },
-    { name: 'Olives', state: false }];
-
 
   onSubmit(form: NgForm) {
-    console.log(this.ingredients);
-  }
-
-  onChange(value: any) {
-    // Update our ingredients list to keep it in sync with the form's state
-    this.updateIngerdientByName(value.target.name, value.target.checked);
-  }
-
-  updateIngerdientByName(name: string, newState: boolean) {
-    this.ingredients.find(a => a.name === name).state = newState;
+    console.log(form);
   }
 }
 ```
 
-We will go an extra mile for this one, because we want to be able to select multiple ingredients. For this purpose we create a ingredients array it the typescript code, which we will use to track the state of our checkboxes. 
-Checkbox states are updated using onChange function, which is bind to checkboxes `change` event. Other than that, we use the same techniques like we did with the other elements.  
-
-Now, when the form is submitted, we can log `ingredients` array to the console, and see that proper ingredients are selected:
+We have created checkbox for all of our ingredients, and added a name and `ngModel` to each one of them.
+Now, when the form is submitted, we can see that all of our checkboxes in the console, and see that proper ingredients are selected:
 ![pizza-console-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-checkbox.png" | relative_url }})
 
 ### Adding Forms Validation
@@ -407,7 +408,6 @@ In our css code we intentionally applied this _ng-invalid_ style only to the inp
 In order to provide more details to the user about the validation error, we will also display some text, explaining what is wrong with the form, if input is not valid. The `ngIf` directive is the perfect candidate to help us with achieving this, so we have added it to the paragraph.
 Now, when we don't enter name of our pizza, it is not possible to submit the form, and name input field is marked with red border.
 
-
 > Why use `touched` and `dirty`? Usually we don't want to display that form is invalid before user even had a chance of editing the form. The `touched` property tells us exactly that - if the field was touched or not. Another useful property is `dirty`, which tells us if value of the field was changed. Similary, we use `ng-touch` and `ng-dirty` in or css.
 
 Let's see how our form looks now, with input validation added:
@@ -415,6 +415,115 @@ Let's see how our form looks now, with input validation added:
 
 ### Grouping Forms Data
 
+It is possible to group several elements in a group in order to have some structure in our application, which is helpful in larger forms. It also helps with the validation, giving us possibility to check validation of a group of elements instead of entire form.
+We can create a group by placing `ngModelGroup` directive in a wrapping div element for example. `ngModelGroup` needs a name, so we can reference it later in  our code, and here is the example:
+
+```html
+<!-- Div element wrapping some controls-->
+<div ngModelGroup="myGroup">
+  <!--Add elements to group here-->
+</div>
+```
+
 ### Default Values And Data Binding
 
+So far we only used ngModel to tell Angular what html elements we want to have in our form. We can also use property binding to set initial data of our elements. Let's set initial values for our __pizza size__ and __ketchup type__. We would chang out html as follows:
+
+```html
+<div class="form-group">
+<label for="pizza-size">Choose Size</label>
+<select id="pizza-size" class="form-control" name="pizzaSize" [ngModel]="'small'">
+  <option value="small">Small</option>
+  <option value="medium">Medium</option>
+  <option value="large">Large</option>
+</select>
+</div>
+<div class="form-group">
+<strong>Katchup Type</strong>
+<div class="radio" *ngFor="let ketchupType of ketchupTypes">
+  <label for="ketchupType">
+    <input type="radio" id="ketchupType" [value]="ketchupType" name="ketchup" 
+    [ngModel]="ketchupTypes[0]"> {{ ketchupType }}
+  </label>
+</div>
+</div>
+```
+Now we have value _Small_ choosen for the pizza size and _No Ketchup_ chosen for the ketchup type as a default.
+
+Let's see how our form looks now, with input validation added:
+![pizza-gui-binding.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-binding.png" | relative_url }})
+
+We could also use two-way binding if required, by defining some propery in our typescript and bind it using two way binding syntax aka _banana in the box [()]_, for example: `[(ngModel)]="someCustomProperty"`.
+
 ### Setting And Patching The Data
+
+Yet another way of setting the form's data is by using our NgForm object and it's setValue function. We need to pass javascript object when calling this function, exactly representing our form data. To demonstrate this, let' add _Generate_ button that we can use to populate our form with some hardcoded data.
+
+```html
+<!--Code ommited for clarity... -->
+<div class="name-input">
+  <label for="name-input">Pizza Name</label>
+  <div class="input-group" id="yes">
+    <input type="text" class="form-control" id="name" name="name" ngModel required #nameInput="ngModel">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button" (click)="onGenerate(f)">Generate</button>
+    </span>
+  </div>
+  <p *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" class="text-danger">Please give Your pizza a name.</p>
+</div>
+<!--Code ommited for clarity... -->
+```
+
+Typescript for this looks like:
+```ts
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  defaultName = 'Awesome Pizza';
+  ketchupTypes = ['No Katchup', 'Mild', 'Hot'];
+  cheese = false;
+  ham = false;
+  egg = false;
+  mushroom = false;
+  paprika = false;
+  olives = false;
+
+  onSubmit(pizzaForm: NgForm) {
+    console.log(pizzaForm.value);
+  }
+
+  onGenerate(pizzaForm: NgForm) {
+    pizzaForm.setValue({
+      name: this.defaultName,
+      ketchup: 'Hot',
+      pizzaSize: 'large',
+      cheese: true,
+      egg: true,
+      ham: true,
+      olives: true,
+      paprika: false,
+      mushroom: false
+    });
+  }
+}
+```
+We are passing our NgForm object to onGenerate method, just like we did with the _Submit_ button. Then, in the typescript code, we are calling setValue function and passing javacsript object with some random values.
+After pressing _Generate_ button, the form looks like this:
+
+![pizza-gui-generate.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-generate.png" | relative_url }})
+
+Of course, it is possible to achieve the same result by using propery binding, but it is nice to know this feature as well.
+
+If we don't want to populate all the elements of the form, we could use patchValue function instead. Then we would only pass to the function those properties we want updated.
+
+```ts
+pizzaForm.form.patchValue({
+      name: this.defaultName
+    });
+```
