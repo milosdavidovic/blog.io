@@ -127,7 +127,7 @@ Finally we are able to get value from the input element as follows:
 `console.log('Value of a name variable is: ' + form.value.name);`
 
 > HINT: We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
-
+  
 ```ts
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
