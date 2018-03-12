@@ -117,12 +117,12 @@ When we submit this form, we can see following output in the console as expected
 
 But to understand how this works, let examine what Angular exactly did for us here. We have our HTML form element, but it has some additional Angular syntax:  
 `<form (ngSubmit)="onSubmit(f)" #pizzaForm="ngForm">`  
-The `ngSubmit` is a directive which specifies the function to be executed when the form is submitted. In the example we have specified that onSubmit function should be executed and this function is defined in our typescript.  
-What is interesting is that we were able to pass parameter f to this function, which is of type NgForm. NgForm is a another directive, and we can export a directive into a local template variable like: `#pizzaForm="ngForm"`.  
-But this is just one peace of the puzzle.
+The `ngSubmit` is a directive which specifies the function to be executed when the form is submitted. In the example, we have specified that onSubmit function should be executed and this function is defined in our typescript.  
+What is interesting is that we were able to pass parameter f to this function, which is of type NgForm. NgForm is another directive, and we can export a directive into a local template variable like: `#pizzaForm="ngForm"`.  
+But this is just one piece of the puzzle.
 
 `<input type="text" class="form-control" id="name" name="name" ngModel>`  
-To finally get access to form values, we need to use another directive: `ngModel`, to tell Angular in what elements of the form are we interested in. also, we need to give name to our element using the name attribute, and this name we will also use when accessing the elements value in our typescript code.  
+To finally get access to form values, we need to use another directive: `ngModel`, to tell Angular in what elements of the form are we interested in. also, we need to give a name to our element using the name attribute, and this name we will also use when accessing the value of the element in our typescript code.  
 Finally we are able to get value from the input element as follows:  
 `console.log('Value of a name variable is: ' + form.value.name);`
 
@@ -279,7 +279,7 @@ After submitting the form, we get the following output in the console:
 
 ### Using Checkbox Element
 
-Check box is another common element we use in the forms, so lets add some to our application. We will use checkboxes to select ingredients for our pizza.
+A checkbox is another common element we use in the forms, so let us add some to our application. We will use checkboxes to select ingredients for our pizza.
 
 ![pizza-gui-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-checkbox.png" | relative_url }})
 
@@ -374,14 +374,14 @@ export class AppComponent {
 }
 ```
 
-We have created checkbox for all of our ingredients, and added a name and `ngModel` to each one of them.
-Now, when the form is submitted, we can see that all of our checkboxes in the console, and see that proper ingredients are selected:
+We have created a checkbox for all of our ingredients and added a name and `ngModel` to each one of them.
+Now, when the form is submitted, we can see that all of our checkboxes in the console, and see that proper ingredients are selected:  
 ![pizza-console-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-checkbox.png" | relative_url }})
 
 ### Adding Forms Validation
 
 So far we only used _ngForm_ object to access value property, but there is a lot more to it. We can also use this object for the form validation purposes.
-Lets say we want to make our pizza name input field mandatory. Here is some code which demonstrates how to achieve this with help of Angular.
+Let us say we want to make our pizza name input field mandatory. Here is some code which demonstrates how to achieve this with help of Angular.
 
 ```html
 <!--Rest of the code omitted for clarity...-->
@@ -403,19 +403,17 @@ input.ng-invalid.ng-touched {
   border-left: 4px solid lightcoral;
 }
 ```
-In our css code we intentionally applied this _ng-invalid_ style only to the input element, but we can to similar thing for other elements too. 
-
-In order to provide more details to the user about the validation error, we will also display some text, explaining what is wrong with the form, if input is not valid. The `ngIf` directive is the perfect candidate to help us with achieving this, so we have added it to the paragraph.
-Now, when we don't enter name of our pizza, it is not possible to submit the form, and name input field is marked with red border.
-
-> Why use `touched` and `dirty`? Usually we don't want to display that form is invalid before user even had a chance of editing the form. The `touched` property tells us exactly that - if the field was touched or not. Another useful property is `dirty`, which tells us if value of the field was changed. Similary, we use `ng-touch` and `ng-dirty` in or css.
+In our css code, we intentionally applied this _ng-invalid_ style only to the input element, but we can do the similar thing for other elements too.  
+In order to provide more details to the user about the validation error, we will also display some text, explaining what is wrong with the form, if the input is not valid. The `ngIf` directive is the perfect candidate to help us with achieving this, so we have added it to the paragraph.
+Now, when we don't enter a name of our pizza, it is not possible to submit the form, and name input field is marked with red border.
+> Why use `touched` and `dirty`? Usually, we don't want to display that form is invalid before the user even had a chance of editing the form. The `touched` property tells us exactly that - if the field was touched or not. Another useful property is `dirty`, which tells us if the value of the field was changed. Similarly, we use `ng-touch` and `ng-dirty` in or css.
 
 Let's see how our form looks now, with input validation added:
 ![pizza-gui-validation.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-validation.png" | relative_url }})
 
 ### Grouping Forms Data
 
-It is possible to group several elements in a group in order to have some structure in our application, which is helpful in larger forms. It also helps with the validation, giving us possibility to check validation of a group of elements instead of entire form.
+It is possible to group several elements in a group in order to have some structure in our application, which is helpful in larger forms. It also helps with the validation, giving us the possibility to check validation of a group of elements instead of entire form.
 We can create a group by placing `ngModelGroup` directive in a wrapping div element for example. `ngModelGroup` needs a name, so we can reference it later in  our code, and here is the example:
 
 ```html
@@ -427,7 +425,7 @@ We can create a group by placing `ngModelGroup` directive in a wrapping div elem
 
 ### Default Values And Data Binding
 
-So far we only used ngModel to tell Angular what html elements we want to have in our form. We can also use property binding to set initial data of our elements. Let's set initial values for our __pizza size__ and __ketchup type__. We would chang out html as follows:
+So far we only used ngModel to tell Angular what HTML elements we want to have in our form. We can also use property binding to set initial data of our elements. Let's set initial values for our __pizza size__ and __ketchup type__. We would chang out HTML as follows:
 
 ```html
 <div class="form-group">
@@ -448,12 +446,12 @@ So far we only used ngModel to tell Angular what html elements we want to have i
 </div>
 </div>
 ```
-Now we have value _Small_ choosen for the pizza size and _No Ketchup_ chosen for the ketchup type as a default.
+Now we have value _Small_ chosen for the pizza size and _No Ketchup_ chosen for the ketchup type as a default.
 
 Let's see how our form looks now, with input validation added:
 ![pizza-gui-binding.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-binding.png" | relative_url }})
 
-We could also use two-way binding if required, by defining some propery in our typescript and bind it using two way binding syntax aka _banana in the box [()]_, for example: `[(ngModel)]="someCustomProperty"`.
+We could also use two-way binding if required, by defining some property in our typescript and bind it using two-way binding syntax aka _banana in the box [()]_, for example: `[(ngModel)]="someCustomProperty"`.
 
 ### Setting And Patching The Data
 
@@ -513,13 +511,13 @@ export class AppComponent {
   }
 }
 ```
-We are passing our NgForm object to onGenerate method, just like we did with the _Submit_ button. Then, in the typescript code, we are calling setValue function and passing javacsript object with some random values.
+We are passing our NgForm object to onGenerate method, just like we did with the _Submit_ button. Then, in the typescript code, we are calling setValue function and passing javascript object with some random values.
 After pressing _Generate_ button, the form looks like this:
 
 ![pizza-gui-generate.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-generate.png" | relative_url }})
 
-Of course, it is possible to achieve the same result by using propery binding, but it is nice to know this feature as well.
-If we don't want to populate all the elements of the form, we could use patchValue function instead. Then we would only pass to the function those properties we want updated, only name in following example:
+Of course, it is possible to achieve the same result by using property binding, but it is nice to know this feature as well.
+If we don't want to populate all the elements of the form, we could use patchValue function instead. Then we would only pass to the function those properties we want to be updated - only the name in the following example:
 
 ```ts
 pizzaForm.form.patchValue({
