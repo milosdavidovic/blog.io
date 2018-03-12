@@ -127,7 +127,7 @@ To finally get access to form values, we need to use another directive: `ngModel
 Finally we are able to get value from the input element as follows:  
 `console.log('Value of a name variable is: ' + form.value.name);`  
   
-> We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
+> NOTE: We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
   
 ```ts
 import { Component, ViewChild } from '@angular/core';
@@ -411,7 +411,7 @@ In our css code, we intentionally applied this _ng-invalid_ style only to the in
 In order to provide more details to the user about the validation error, we will also display some text, explaining what is wrong with the form, if the input is not valid. The `ngIf` directive is the perfect candidate to help us with achieving this, so we have added it to the paragraph.
 Now, when we don't enter a name of our pizza, it is not possible to submit the form, and name input field is marked with red border.  
   
-> Why use `touched` and `dirty`? Usually, we don't want to display that form is invalid before the user even had a chance of editing the form. The `touched` property tells us exactly that - if the field was touched or not. Another useful property is `dirty`, which tells us if the value of the field was changed. Similarly, we use `ng-touch` and `ng-dirty` in or css.
+> NOTE: Why use `touched` and `dirty`? Usually, we don't want to display that form is invalid before the user even had a chance of editing the form. The `touched` property tells us exactly that - if the field was touched or not. Another useful property is `dirty`, which tells us if the value of the field was changed. Similarly, we use `ng-touch` and `ng-dirty` in or css.
   
 
 Let's see how our form looks now, with input validation added:
