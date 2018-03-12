@@ -6,7 +6,7 @@ categories: frontend
 published: true
 ---
 
-It is absolutely possible to create form and handle user input in the HTML, why would we need Angular's help to do this? Problem lies in the fact that we usually end up with submitting form's data to the server using the submit button. Due to the fact that we are creating SPA with help of the Angular framework and therefore there no "submitting", we need a different approach. Instead of the submitting, we can use Angular's Http Module to send form's data back and forth between our application and some backend server. Additionally, Angular helps us with this task by providing lot of functionality one might need when dealing with forms. Some of this functionality we get out-of-box with Angular are: easy access to form's data, user input validation, conditionally changes how form is displayed and what is visible or enabled and much more. 
+It is absolutely possible to create form and handle user input in the HTML, why would we need Angular's help to do this? Problem lies in the fact that we usually end up with submitting form's data to the server using the submit button. Due to the fact that we are creating SPA with help of the Angular framework and therefore there no "submitting", we need a different approach. Instead of the submitting, we can use Angular's Http Module to send form's data back and forth between our application and some backend server. Additionally, Angular helps us with this task by providing lot of functionality one might need when dealing with forms. Some of this functionality we get out-of-box with Angular are: easy access to form's data, user input validation, ability to conditionally change how form is displayed and what is visible or enabled and much more. 
 There are two approaches to developing forms in Angular: Template and Reactive. This post will cover some of the basics of the Template approach through an example of creating simple pizza ordering form ('cuz everyone likes pizza!).
 
 ## Content
@@ -127,6 +127,7 @@ Finally we are able to get value from the input element as follows:
 `console.log('Value of a name variable is: ' + form.value.name);`
 
 > HINT: We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
+
 ```ts
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
