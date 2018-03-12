@@ -520,7 +520,7 @@ After pressing _Generate_ button, the form looks like this:
 
 Of course, it is possible to achieve the same result by using propery binding, but it is nice to know this feature as well.
 
-If we don't want to populate all the elements of the form, we could use patchValue function instead. Then we would only pass to the function those properties we want updated.
+If we don't want to populate all the elements of the form, we could use patchValue function instead. Then we would only pass to the function those properties we want updated, only name in following example:
 
 ```ts
 pizzaForm.form.patchValue({
