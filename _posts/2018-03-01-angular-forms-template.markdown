@@ -123,11 +123,12 @@ What is interesting is that we were able to pass parameter f to this function, w
 But this is just one piece of the puzzle.
 
 `<input type="text" class="form-control" id="name" name="name" ngModel>`  
-To finally get access to form values, we need to use another directive: `ngModel`, to tell Angular in what elements of the form are we interested in. also, we need to give a name to our element using the name attribute, and this name we will also use when accessing the value of the element in our typescript code.  
+To finally get access to form values, we need to use another directive: `ngModel`, to tell Angular in what elements of the form are we interested in. Also, we need to give a name to our element using the name attribute, and this name we will also use when accessing the value of the element in our typescript code.  
 Finally we are able to get value from the input element as follows:  
+  
 `console.log('Value of a name variable is: ' + form.value.name);`  
   
-> NOTE: We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
+We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
   
 ```ts
 import { Component, ViewChild } from '@angular/core';
