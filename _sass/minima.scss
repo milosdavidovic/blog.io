@@ -52,7 +52,6 @@ body .gist	{
 	}
 	
 	.gist-data {
-		background: #293134;
 		border-radius: 4px 4px 0 0;
 		color: #A0A8B3;
 		font-size: 14px;
@@ -69,7 +68,7 @@ body .gist	{
 	}
 	
 	.highlight {
-	    background: #83b1c2;
+	    background: #293134;
 	    max-width: 800px;
 	    overflow-x: scroll;
 	    border: none;
@@ -158,18 +157,15 @@ body .gist	{
 	.pl-mi1,
 	.pl-mdht {
 	    color: #e0e2e4;
-	    background: rgba(0, 64, 0, .5);
 	}
 	.pl-md,
 	.pl-mdhf,
 	.pl-id,
 	.pl-ii {
 	    color: #e0e2e4;
-	    background: rgba(64, 0, 0, .5);
 	}
 	
 	.gist-meta	{
-		background: #ccc;
 		border-radius: 0 0 4px 4px;
 		font-size: 14px;
 		padding: 6px 16px;		a	{
