@@ -457,7 +457,7 @@ We could also use two-way binding if required, by defining some property in our 
 
 Yet another way of setting the form's data is by using our NgForm object and it's setValue function. We need to pass javascript object when calling this function, exactly representing our form data. To demonstrate this, let' add _Generate_ button that we can use to populate our form with some hardcoded data.
 
-```html
+{% highlight html linenos %}
 <!--Code ommited for clarity... -->
 <div class="name-input">
   <label for="name-input">Pizza Name</label>
@@ -470,7 +470,7 @@ Yet another way of setting the form's data is by using our NgForm object and it'
   <p *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" class="text-danger">Please give Your pizza a name.</p>
 </div>
 <!--Code ommited for clarity... -->
-```
+{% endhighlight %}
 
 Typescript for this looks like:
 ```ts
