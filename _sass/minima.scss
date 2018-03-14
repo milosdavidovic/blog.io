@@ -47,9 +47,11 @@ $on-laptop:        800px !default;
 body .highlighter-rouge	{
 	
 	.c {
-	    color: #6ddd6d;
+	  color: #6ddd6d;
 	}
-
+  .err {
+    background: #3a292900
+  }
 
 }
 
