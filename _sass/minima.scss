@@ -49,11 +49,11 @@ $on-laptop:        800px !default;
   @extend %vertical-rhythm;
 
   .highlighter-rouge & {
-    background: #eef;
+    background: rgb(50, 50, 50);
   }
 
   .c     { color: #998; font-style: italic } // Comment
-  .err   { color: #a61717; background-color: #008080 } // Error
+  .err   { color: #008080; background-color: #00808000 } // Error
   .k     { font-weight: bold } // Keyword
   .o     { font-weight: bold } // Operator
   .cm    { color: #998; font-style: italic } // Comment.Multiline
