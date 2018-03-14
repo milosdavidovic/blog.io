@@ -463,7 +463,9 @@ We could also use two-way binding if required, by defining some property in our 
 ### Setting And Patching The Data
 
 Yet another way of setting the form's data is by using our NgForm object and it's setValue function. We need to pass javascript object when calling this function, exactly representing our form data. To demonstrate this, let' add _Generate_ button that we can use to populate our form with some hardcoded data.
-
+  
+{% gist 87c3dce203fc8a266691ec497e921c84 %}
+  
 ```html
 <!--Code ommited for clarity... -->
 <div class="name-input">
