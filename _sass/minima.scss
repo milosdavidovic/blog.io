@@ -51,8 +51,8 @@ $on-laptop:        800px !default;
   .highlighter-rouge & {
     background: rgb(50, 50, 50);
   }
-
-  .c     { color: #998; font-style: italic } // Comment
+  .code  { color:#dfd; }
+  .c     { color: rgb(236, 236, 175); font-style: italic } // Comment
   .err   { color: #008080; } // Error
   .k     { font-weight: bold } // Keyword
   .o     { font-weight: bold } // Operator
