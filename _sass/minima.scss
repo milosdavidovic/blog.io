@@ -44,9 +44,10 @@ $on-laptop:        800px !default;
 /**
  * Syntax highlighting styles
  */
-  pre.code {
-   color:#dfd; background-color: rgba(221, 255, 221, 0)
-  }
+ pre.code {
+  color: #dfd;
+  background-color: rgba(221, 255, 221, 0);
+}
  
  .highlight {
   background: rgb(50, 50, 50);
