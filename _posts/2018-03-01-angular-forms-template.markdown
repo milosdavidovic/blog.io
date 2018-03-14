@@ -6,7 +6,7 @@ categories: frontend
 published: true
 ---
 
-It is absolutely possible to create form and handle user input in the HTML, why would we need Angular's help to do this? Problem lies in the fact that we usually end up with submitting form's data to the server using the submit button. Due to the fact that we are creating SPA with help of the Angular framework and therefore there no "submitting", we need a different approach. Instead of the submitting, we can use Angular's Http Module to send form's data back and forth between our application and some backend server. Additionally, Angular helps us with this task by providing lot of functionality one might need when dealing with forms. Some of this functionality we get out-of-box with Angular are: easy access to form's data, user input validation, conditionally changes how form is displayed and what is visible or enabled and much more. 
+It is absolutely possible to create form and handle user input in the HTML, why would we need Angular's help to do this? Problem lies in the fact that we usually end up with submitting form's data to the server using the submit button. Due to the fact that we are creating SPA with help of the Angular framework and therefore there no "submitting", we need a different approach. Instead of the submitting, we can use Angular's Http Module to send form's data back and forth between our application and some backend server. Additionally, Angular helps us with this task by providing lot of functionality one might need when dealing with forms. Some of this functionality we get out-of-box with Angular are: easy access to form's data, user input validation, ability to conditionally change how form is displayed and what is visible or enabled and much more. 
 There are two approaches to developing forms in Angular: Template and Reactive. This post will cover some of the basics of the Template approach through an example of creating simple pizza ordering form ('cuz everyone likes pizza!).
 
 ## Content
@@ -119,14 +119,17 @@ But to understand how this works, let examine what Angular exactly did for us he
 `<form (ngSubmit)="onSubmit(f)" #pizzaForm="ngForm">`  
 The `ngSubmit` is a directive which specifies the function to be executed when the form is submitted. In the example, we have specified that onSubmit function should be executed and this function is defined in our typescript.  
 What is interesting is that we were able to pass parameter f to this function, which is of type NgForm. NgForm is another directive, and we can export a directive into a local template variable like: `#pizzaForm="ngForm"`.  
+
 But this is just one piece of the puzzle.
 
 `<input type="text" class="form-control" id="name" name="name" ngModel>`  
-To finally get access to form values, we need to use another directive: `ngModel`, to tell Angular in what elements of the form are we interested in. also, we need to give a name to our element using the name attribute, and this name we will also use when accessing the value of the element in our typescript code.  
+To finally get access to form values, we need to use another directive: `ngModel`, to tell Angular in what elements of the form are we interested in. Also, we need to give a name to our element using the name attribute, and this name we will also use when accessing the value of the element in our typescript code.  
 Finally we are able to get value from the input element as follows:  
-`console.log('Value of a name variable is: ' + form.value.name);`
-
-> HINT: We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
+  
+`console.log('Value of a name variable is: ' + form.value.name);`  
+  
+We didn't have to pass `ngForm` object to the onSubmit function. Another approach would be to use Angular's ViewChild decorator and store our form data in the variable we define in our typescript class like:  
+  
 ```ts
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -376,6 +379,7 @@ export class AppComponent {
 
 We have created a checkbox for all of our ingredients and added a name and `ngModel` to each one of them.
 Now, when the form is submitted, we can see that all of our checkboxes in the console, and see that proper ingredients are selected:  
+  
 ![pizza-console-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-checkbox.png" | relative_url }})
 
 ### Adding Forms Validation
@@ -394,9 +398,10 @@ Let us say we want to make our pizza name input field mandatory. Here is some co
 <!--Rest of the code omitted for clarity...-->
 <button class="btn btn-primary" type="submit" [disabled]="f.valid">Order Now</button>
 ```
+  
 We have added `required` validation attribute to the name input element.
-In order to demonstrate forms validation, we are also disabling our _submit_ button if the form is not valid. In addition to that, it would be nice to tell the user what is wrong with the form's data. We can do this by using already existing `ng-invalid` class.
-
+In order to demonstrate forms validation, we are also disabling our _submit_ button if the form is not valid. In addition to that, it would be nice to tell the user what is wrong with the form's data. We can do this by using already existing `ng-invalid` class.  
+  
 ```css
 input.ng-invalid.ng-touched {
   border: 1px solid lightcoral;
@@ -405,8 +410,10 @@ input.ng-invalid.ng-touched {
 ```
 In our css code, we intentionally applied this _ng-invalid_ style only to the input element, but we can do the similar thing for other elements too.  
 In order to provide more details to the user about the validation error, we will also display some text, explaining what is wrong with the form, if the input is not valid. The `ngIf` directive is the perfect candidate to help us with achieving this, so we have added it to the paragraph.
-Now, when we don't enter a name of our pizza, it is not possible to submit the form, and name input field is marked with red border.
-> Why use `touched` and `dirty`? Usually, we don't want to display that form is invalid before the user even had a chance of editing the form. The `touched` property tells us exactly that - if the field was touched or not. Another useful property is `dirty`, which tells us if the value of the field was changed. Similarly, we use `ng-touch` and `ng-dirty` in or css.
+Now, when we don't enter a name of our pizza, it is not possible to submit the form, and name input field is marked with red border.  
+  
+> NOTE: Why use `touched` and `dirty`? Usually, we don't want to display that form is invalid before the user even had a chance of editing the form. The `touched` property tells us exactly that - if the field was touched or not. Another useful property is `dirty`, which tells us if the value of the field was changed. Similarly, we use `ng-touch` and `ng-dirty` in or css.
+  
 
 Let's see how our form looks now, with input validation added:
 ![pizza-gui-validation.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-validation.png" | relative_url }})
@@ -446,8 +453,8 @@ So far we only used ngModel to tell Angular what HTML elements we want to have i
 </div>
 </div>
 ```
-Now we have value _Small_ chosen for the pizza size and _No Ketchup_ chosen for the ketchup type as a default.
-
+Now we have value _Small_ chosen for the pizza size and _No Ketchup_ chosen for the ketchup type as a default.  
+  
 Let's see how our form looks now, with input validation added:
 ![pizza-gui-binding.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-binding.png" | relative_url }})
 
