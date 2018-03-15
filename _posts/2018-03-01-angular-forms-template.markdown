@@ -521,7 +521,7 @@ export class AppComponent {
 We are passing our NgForm object to onGenerate method, just like we did with the _Submit_ button. Then, in the typescript code, we are calling setValue function and passing javascript object with some random values.
 After pressing _Generate_ button, the form looks like this:
 
-![pizza-gui-generate.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-generate.png" | relative_url }})
+![pizza-gui-generate.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-generate.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 Of course, it is possible to achieve the same result by using property binding, but it is nice to know this feature as well.
 If we don't want to populate all the elements of the form, we could use patchValue function instead. Then we would only pass to the function those properties we want to be updated - only the name in the following example:
