@@ -41,19 +41,37 @@ $on-laptop:        800px !default;
   font-size: $base-font-size * $ratio;
 }
 
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @milosdavidovic
+Sign out
+42
+770 633 jekyll/minima
+ Code  Issues 22  Pull requests 11  Projects 0  Insights
+minima/_sass/minima/_syntax-highlighting.scss
+e4c9d1e  on Sep 24, 2016
+@zdroid zdroid Use standardized tab size of 2 spaces
+@zdroid @parkr
+     
+72 lines (69 sloc)  3.15 KB
 /**
  * Syntax highlighting styles
  */
- .highlight {
-  background: rgb(50, 50, 50);
+.highlight {
+  background: #fff;
   @extend %vertical-rhythm;
 
   .highlighter-rouge & {
-    background: rgb(50, 50, 50);
+    background: #eef;
   }
 
   .c     { color: #998; font-style: italic } // Comment
-  .err   { color: #008080; } // Error
+  .err   { color: #d14;} // Error
   .k     { font-weight: bold } // Keyword
   .o     { font-weight: bold } // Operator
   .cm    { color: #998; font-style: italic } // Comment.Multiline
@@ -112,6 +130,18 @@ $on-laptop:        800px !default;
   .vi    { color: #008080 } // Name.Variable.Instance
   .il    { color: #099 } // Literal.Number.Integer.Long
 }
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
 
 // Import partials.
 @import
