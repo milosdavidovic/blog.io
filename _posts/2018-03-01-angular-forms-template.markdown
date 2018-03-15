@@ -32,7 +32,7 @@ There are two approaches to developing forms in Angular: Template and Reactive. 
 ### Creating Simple Form
 
 Lets start with a simple form, which has one input element and a submit button:  
-![pizza-form-basic.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-basic.png" | relative_url }})
+![pizza-form-basic.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-basic.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 Let's create some basic HTML for demonstration purposes:
 
@@ -113,7 +113,7 @@ export class AppComponent {
 
 When we submit this form, we can see following output in the console as expected:
 
-![pizza-console-basic.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-basic.png" | relative_url }})
+![pizza-console-basic.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-basic.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 But to understand how this works, let examine what Angular exactly did for us here. We have our HTML form element, but it has some additional Angular syntax:  
 `<form (ngSubmit)="onSubmit(f)" #pizzaForm="ngForm">`  
@@ -152,7 +152,7 @@ Don't forget to include ViewChild form `@angular/core`!
 ### Using Select Element
 
 Lets add select element to our form to be able to choose pizza size:
-![pizza-gui-select.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-select.png" | relative_url }})
+![pizza-gui-select.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-select.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 Here is the HTML for the above example:
 ```html
@@ -208,12 +208,12 @@ export class AppComponent {
 ```
 We have manually selected _medium_ option for the pizza size, and successfully accessed this value using the same techniques as with the input element and the console shows the value:
 
-![pizza-console-select.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-select.png" | relative_url }})
+![pizza-console-select.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-select.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 ### Using Radio Buttons
 
 Lets add some radio buttons to be able to choose desired ketchup type:
-![pizza-gui-radio.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-radio.png" | relative_url }})
+![pizza-gui-radio.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-radio.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 And after adding code for this to out HTML, it looks like this:
 ```html
@@ -278,13 +278,13 @@ export class AppComponent {
 ```
 
 After submitting the form, we get the following output in the console:
-![pizza-console-radio.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-radio.png" | relative_url }})
+![pizza-console-radio.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-radio.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 ### Using Checkbox Element
 
 A checkbox is another common element we use in the forms, so let us add some to our application. We will use checkboxes to select ingredients for our pizza.
 
-![pizza-gui-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-checkbox.png" | relative_url }})
+![pizza-gui-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-checkbox.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 Lets see the HTML:
 
@@ -380,7 +380,7 @@ export class AppComponent {
 We have created a checkbox for all of our ingredients and added a name and `ngModel` to each one of them.
 Now, when the form is submitted, we can see that all of our checkboxes in the console, and see that proper ingredients are selected:  
   
-![pizza-console-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-checkbox.png" | relative_url }})
+![pizza-console-checkbox.png]({{ "/assets/2018-03-01-angular-forms/pizza-console-checkbox.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 ### Adding Forms Validation
 
@@ -416,7 +416,7 @@ Now, when we don't enter a name of our pizza, it is not possible to submit the f
   
 
 Let's see how our form looks now, with input validation added:
-![pizza-gui-validation.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-validation.png" | relative_url }})
+![pizza-gui-validation.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-validation.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 ### Grouping Forms Data
 
@@ -456,7 +456,7 @@ So far we only used ngModel to tell Angular what HTML elements we want to have i
 Now we have value _Small_ chosen for the pizza size and _No Ketchup_ chosen for the ketchup type as a default.  
   
 Let's see how our form looks now, with input validation added:
-![pizza-gui-binding.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-binding.png" | relative_url }})
+![pizza-gui-binding.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-binding.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 We could also use two-way binding if required, by defining some property in our typescript and bind it using two-way binding syntax aka _banana in the box [()]_, for example: `[(ngModel)]="someCustomProperty"`.
 
