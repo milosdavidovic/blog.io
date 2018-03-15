@@ -32,6 +32,7 @@ There are two approaches to developing forms in Angular: Template and Reactive. 
 ### Creating Simple Form
 
 Lets start with a simple form, which has one input element and a submit button:  
+  
 ![pizza-form-basic.png]({{ "/assets/2018-03-01-angular-forms/pizza-gui-basic.png" | relative_url }}){:style="border: 1px solid #ddd;"}
 
 Let's create some basic HTML for demonstration purposes:
