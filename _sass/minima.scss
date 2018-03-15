@@ -49,7 +49,7 @@ $on-laptop:        800px !default;
   @extend %vertical-rhythm;
 
   .highlighter-rouge & {
-    background: #eef;
+    background: rgb(225, 225, 226);
   }
 
   .c     { color: #998; font-style: italic } // Comment
