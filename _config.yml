@@ -18,11 +18,11 @@ email: milosh.davidovic[at]yahoo.com
 description: > # this means to ignore newlines until "baseurl:"
   Hi, I am Milos Davidovic, software developer from Serbia, and this is my tech blog.
   Here I write about stuff I found useful, mostly Microsoft related technologies.
-baseurl: "/blog.io" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: n/a
+twitter_username: @MilosGrozni
 github_username:  milosdavidovic
-
+linkedin_username: milosdavidovic
 # Build settings
 markdown: kramdown
 theme: minima
