@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: /about.html
 ---
 
 Hi, I am Milos Davidovic - a software developer from Serbia, and this is my tech blog.
