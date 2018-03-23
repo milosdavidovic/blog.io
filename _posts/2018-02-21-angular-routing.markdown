@@ -4,6 +4,7 @@ title:  "Angular Routing"
 date:   2018-02-21 16:27:25 +0100
 categories: frontend
 published: true
+tags: angular routing routes
 ---
 
 For navigating inside our Angular applications we usually don't want to force a browser to reload, because we want to keep our application's state. This is where the Angular Routing comes to aid. It provides the mechanisms to achieve just that - navigating inside our application, without triggering a page reload. This also helps to organize our applications better.
