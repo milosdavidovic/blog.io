@@ -28,7 +28,7 @@ For navigating inside our Angular applications we usually don't want to force a 
 
 ### Adding Router Paths
 
-Create an object of type Routes which will hold an array all routes supported by the application. The Routes class should be imported from @angular/router. With that we can configure our app to use these routes by configuring RouterModule using the forRoute method inside the app.module.ts file.
+Create an object of type Routes which will hold an array of all routes supported by the application. The Routes class should be imported from @angular/router. With that we can configure our app to use these routes by configuring RouterModule using the forRoute method inside the app.module.ts file.
 
 #### Routes declaration
 
@@ -122,7 +122,7 @@ let id = this.activatedRoute.snapshot.params['id'];
 
 This way we are retrieving parameter named _id_ from our route and setting its value to the local variable.
 
-If there is a chance that parameter will change while we have the same component loaded and we what to store the latest value in our id variable, we need to subscribe to the params observable:
+If there is a chance that parameter will change while we have the same component loaded and we want to store the latest value in our id variable, we need to subscribe to the params observable:
 
  ```ts
 // ActivatedRoute need to be imported from @angular/router
