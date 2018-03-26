@@ -1,6 +1,6 @@
 language: ruby
 rvm:
   - 2.5.0
-install: gem install jekyll -v 3.7.3 && gem install s3_website && gem install jekyll-watch -v 1.5.1 && gem install minima
+install: gem install jekyll -v 3.7.3 && gem install s3_website && gem install jekyll-watch -v 1.5.1 && gem install jekyll-liquid -v3.0.6 && gem install minima
 script: jekyll build
 after_success: s3_website push
