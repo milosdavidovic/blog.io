@@ -11,5 +11,5 @@ branches:
   only:
     - master
 
-script: jekyll build
+script: bundle exec jekyll build
 after_success: s3_website push
