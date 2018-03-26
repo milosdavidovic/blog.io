@@ -2,8 +2,8 @@ language: ruby
 rvm:
   - 2.5.0
 install: 
-  - gem install jekyll -v 3.7.3
   - bundle install
+  - gem install jekyll -v 3.7.3
   - gem install s3_website
   - gem install minima
 script: jekyll build
