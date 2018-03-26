@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.4.2
-install: gem install jekyll -v 3.6.2 && gem install s3_website && gem install jekyll-feed && gem install minima
+  - 2.5.0
+install: gem install jekyll -v 3.7.3 && gem install s3_website && gem install jekyll-feed && gem install minima
 script: jekyll build
 after_success: s3_website push
