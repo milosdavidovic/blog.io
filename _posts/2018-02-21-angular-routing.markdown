@@ -12,21 +12,21 @@ For navigating inside our Angular applications we usually don't want to force a 
 
 ## Content
 
-[Adding Router Paths](#adding-router-paths)
+[Configuring Router Paths](#configuring-router-paths)
 
-[Loading a Component](#loading-a-component)
+[Redirecting](#redirecting)
 
-[Programmatic Approach](#programmatic-approach)
+[Route Parameters](#route-parameters)
 
-[Navigation With Router Links](#navigation-with-router-links)
-
-[URL Parameters](#url-parameters)
+[Navigation](#navigation)
 
 [Wild Card Routes](#wild-card-routes)
 
-[Retrieving Query Parameters](#retrieving-querry-parameters)
+[Query Parameters](#query-parameters)
 
-### Adding Router Paths
+[Summary](#summary)
+
+### Configuring Router Paths
 
 Create an object of type Routes which will hold an array of all routes supported by the application. The Routes class should be imported from @angular/router. With that we can configure our app to use these routes by configuring RouterModule using the forRoute method inside the app.module.ts file.
 
@@ -42,7 +42,7 @@ const appRoutes: Routes = [
 Here we are defining two root paths: ' ' (empty or default path) and 'users' path and the code is pretty straightforward.
 If we have our application served locally on the port 4200 for example, visiting the address `http://localhost:4200` would load our HomeComponent, while visiting `http://localhost:4200/users` would load the UsersComponent. We could say that our HomeComponent is serving as a default one in this setup.
 
-_NOTE: We need to place `<router-outlet></router-outlet>` tag in out app.componenet.html to serve as a placeholder for loading components based on the route._
+_NOTE: We need to place `<router-outlet></router-outlet>` tag in out app.component.html to serve as a placeholder for loading components based on the route._
 
 #### Configuring RouterModule
 
@@ -76,7 +76,7 @@ With this we defined two new routes in our application:
 
 But how does the Angular knows where to load these child components? For this to work, we need to add another `<router-outlet></router-outlet>` placeholder, but this time not in our app.component.html, but instead in our parent component. In this case, it is a UsersComponent.
 
-#### Redirecting
+### Redirecting
 
 ```typescript
 const appRoutes: Routes = [
@@ -93,6 +93,10 @@ In this setup, we still have two main paths 'home' and 'users' but we are using 
 
 _NOTE: We are using the pathMatch parameter to set matching strategy for this path. By default, Angular matches paths by prefix. For our example, this means that all paths starting with /home would be redirected to the 'home' path. If this is not the desired behavior we could set matching strategy to 'full' and the redirection will happen only in case of exact match._
 
+### Route Parameters
+
+Routes we define in out application are not always static (hardcoded) strings. What if we need for our route to also have some dynamic data, so we can pass some additional dynamic data using our route? We can define some route parameters to achieve just that.
+
 #### Passing Parameters to Routes
 
 ```ts
@@ -107,7 +111,7 @@ const appRoutes: Routes = [
 ];
 ```
 
-What if we need for our route to also have some dynamic data, not just hardcoded strings? We can achieve this by injecting parameters to our route using the column followed with the parameter name, like `:id`.  
+We can make routes dynamic by injecting parameters to our route using the column followed with the parameter name, like `:id`.  
 If we would now be able to load UserComponent and passing `1` as a parameter, by visiting the route:  
 `http://localhost:4200/users/1`
 
@@ -154,8 +158,8 @@ When we have out Routes configured, we can use them and navigate inside our appl
 </ul>
 ```
 
-**routerLink** directive here to define the navigation path. It is an array where we can use static strings and our variables from to construct the desired path.  
-The first element of the array routerLink array can be prefixed to fine-tune behavior when constructing a path:
+**routerLink** directive here defines the navigation path. It is an array where we can use static strings and our variables from to construct the desired path.  
+The first element of the routerLink array can be prefixed to fine-tune behavior when constructing a path:
 
 * 'users' - path we have defined will be appended to the current location;
 * './users'_ - this will result in the same behavior as above;
@@ -177,10 +181,10 @@ this.router.navigate(['new', user.id], { relativeTo: this.activeRoute, queryPara
 ```
 
 Here we are providing segments of the route link we want to navigate to the router's navigate method as an array. The first element of the array routerLink array can be prefixed, the same way we did when using the routerLink in our HTML.
-The second argument of the navigate method represent _navigation extras_ and we can use it to further define the navigation. When we set the relativeTo property to the activeRoute, we are instructing a router to append path we defined in navigate method to the current link route.
+The second argument of the navigate method represent _navigation extras_ and we can use this javascript object to further define the navigation. When we set the relativeTo property to the activeRoute, we are instructing a router to append path we defined in navigate method to the current link route.
 We use the queryParams property to add query parameters, the same way we did when using the routerLink in our HTML.
 
-#### Wild Card Routes
+### Wild Card Routes
 Sometimes we don't want to be so specific about the route we are defining, to be able to cover some range of routes. Example for this might be the _404 Page Not Found_ page when the user hits the route we did not explicitly define in our application.
 
 ```ts
@@ -200,7 +204,7 @@ Here we use double asterisk (`**`) wildcard character to "catch" all routes we a
 
 _NOTE: Defined routes are parsed from top to bottom, so it is a good idea to place generic routes like this one at the end. If we have had defined this '**' path first, we would be always redirected to the not-found root, no matter which route we visit._
 
-#### Retrieving Query Parameters
+### Query Parameters
 
 ```ts
 // ActivatedRoute need to be imported from @angular/router
@@ -209,7 +213,7 @@ _NOTE: Defined routes are parsed from top to bottom, so it is a good idea to pla
 let foo = this.activatedRoute.snapshot.queryParams['foo'];
 ```
 
-This way we are retrieving query parameter named foo from out route and setting its value to the local variable.
+This way we are retrieving query parameter named _foo_ from our route and setting its value to the local variable.
 
 If there is a chance that query parameter will change while we have the same component loaded and we what to store the latest value in our foo variable, we need to subscribe to the queryParameter observable:
 
@@ -225,3 +229,7 @@ this.activatedRoute.queryParams
         }
     );
 ```
+
+### Summary
+
+Here we have covered some of the Angular's routing features and it is hopefully enough to get started with creating a simple navigation between different parts of our application. There is a lot more regarding Angular's routing then it is covered here, and I can recommend to check the official documentation to learn, buy following this [link](https://angular.io/guide/router). 
