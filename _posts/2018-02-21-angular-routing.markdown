@@ -3,7 +3,7 @@ layout: post
 title:  "Angular Routing"
 date:   2018-02-21 16:27:25 +0100
 categories: frontend
-published: false
+published: true
 tags: angular routing routes
 ---
 
